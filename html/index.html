@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+	  crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+	    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+	    crossorigin=""></script>
+
+    <script src="../javascript/businesses.js" type="text/javascript"></script>
+    
+    <style>
+      #mapid { height: 800px; }
+    </style>
+  </head>
+  <body>
+    <div id="mapid"></div>
+    
+    <script type="text/javascript">
+
+      var mymap = L.map('mapid').setView([42.2477157, -72.4718267], 8.6);
+      
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	  maxZoom: 18,
+	  id: 'mapbox/streets-v11',
+	  tileSize: 512,
+	  zoomOffset: -1,
+	  accessToken: 'pk.eyJ1Ijoiam9lbG1hbiIsImEiOiJja2praTZrc2MyNTR3MnVwODg2ZDg2MDBlIn0.lCStPSDt-yVoHjHSl9adUQ'
+      }).addTo(mymap);
+
+      var boston = ['Boston', 'Allston', 'Back Bay', 'Bay Village', 'Beacon Hill', 'Brighton', 'Charlestown', 'Chinatown–Leather District', 'Dorchester', 'Downtown', 'East Boston', 'Fenway-Kenmore (includes Longwood)', 'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 'North End', 'Roslindale', 'Roxbury', 'South Boston', 'South End', 'West End', 'West Roxbury', 'Wharf District']
+      
+      var length = businesses.length;
+      var radius = 100;
+      
+      for(i = 0; i < length; i++) {
+	  var row = businesses[i].split('\t');
+	  [lat, lon, name, locality] = row;
+
+	  if(boston.includes(locality)) {
+	      var circle = L.circle([lat, lon], {
+		  color: 'red',
+		  fillColor: 'red',
+		  fillOpacity: 1,
+		  radius: radius
+	      }).addTo(mymap);
+	  } else {
+	      var circle = L.circle([lat, lon], {
+		  color: 'blue',
+		  fillColor: 'blue',
+		  fillOpacity: 1,
+		  radius: radius
+	      }).addTo(mymap);
+	  }
+      }
+      
+    </script>
+
+  </body>
