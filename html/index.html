@@ -9,17 +9,30 @@
 	    crossorigin=""></script>
 
     <script src="../javascript/businesses.js" type="text/javascript"></script>
-    
+
     <style>
-      #mapid { height: 800px; }
+      #mapid { width: 1200px; height: 600px; }
     </style>
   </head>
   <body>
     <div id="mapid"></div>
-    
+    <table>
+      <tr>
+	<th colspan="2">MA Businesses with Boston in their name:</th>
+      <tr>
+	<td>In Boston:</td>
+	<td><span id="inboston"/></td>
+      </tr>
+      <tr>
+	<td>Not:</td>
+	<td><span id="not" /></td>
+      </tr>
+    </table>
+
     <script type="text/javascript">
 
-      var mymap = L.map('mapid').setView([42.2477157, -72.4718267], 8.6);
+      // var mymap = L.map('mapid').setView([42.2477157, -72.4718267], 8.4);
+      var mymap = L.map('mapid').setView([42.247, -72], 8);
       
       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -34,27 +47,39 @@
       
       var length = businesses.length;
       var radius = 100;
+      var inboston = 0;
+      var not = 0;
       
       for(i = 0; i < length; i++) {
 	  var row = businesses[i].split('\t');
 	  [lat, lon, name, locality] = row;
 
+	  var circle;
 	  if(boston.includes(locality)) {
-	      var circle = L.circle([lat, lon], {
+	      inboston++;
+	      circle = L.circle([lat, lon], {
 		  color: 'red',
 		  fillColor: 'red',
 		  fillOpacity: 1,
 		  radius: radius
-	      }).addTo(mymap);
+	      });
 	  } else {
-	      var circle = L.circle([lat, lon], {
+	      not++
+	      circle = L.circle([lat, lon], {
 		  color: 'blue',
 		  fillColor: 'blue',
 		  fillOpacity: 1,
 		  radius: radius
-	      }).addTo(mymap);
+	      })
 	  }
+
+	  circle.bindPopup(`${name} - ${locality}`).openPopup();
+	  
+	  circle.addTo(mymap);
       }
+
+      document.getElementById('inboston').innerHTML = inboston;
+      document.getElementById('not').innerHTML = not;
       
     </script>
 
