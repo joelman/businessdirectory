@@ -8,7 +8,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1,
-    accessToken: 'pk.eyJ1Ijoiam9lbG1hbiIsImEiOiJja2praTZrc2MyNTR3MnVwODg2ZDg2MDBlIn0.lCStPSDt-yVoHjHSl9adUQ'
+    accessToken: token
 }).addTo(mymap);
 
 var neighborhoods = ['Boston', 'Allston', 'Back Bay', 'Bay Village', 'Beacon Hill', 'Brighton', 'Charlestown', 'Chinatown–Leather District', 'Dorchester', 'Downtown', 'East Boston', 'Fenway-Kenmore (includes Longwood)', 'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 'North End', 'Roslindale', 'Roxbury', 'South Boston', 'South End', 'West End', 'West Roxbury', 'Wharf District']
