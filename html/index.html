@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -8,74 +9,24 @@
 	    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 	    crossorigin=""></script>
 
-    <script src="../javascript/businesses.js" type="text/javascript"></script>
+    <script src="../javascript/businesses.js" langauge="javascript"></script>
 
     <style>
       body { font-family: Arial, Helvetica }
       h1 { font-size: 1.5em; }
-      #mapid { width: 1200px; height: 600px; }
+      #mapid { width: 60em; height: 40em; }
     </style>
   </head>
   <body>
     <h1>MA Businesses with "Boston" in their names:</h1>
     <div id="mapid"></div>
+	<h2>Totals:</h2>
     <ul style="list-style-type: none">
-      <li><span style="color: red;">&#11044;&nbsp;</span><span id="inboston"/></li>
-      <li><span style="color: blue;">&#11044;&nbsp;</span><span id="not" /></li>
+      <li><span style="color: red;">&#11044;&nbsp;</span> <span id="inboston" /></li>
+      <li><span style="color: blue;">&#11044;&nbsp;</span> <span id="not" /></li>
     </ul>
 
-    <script type="text/javascript">
-
-      // var mymap = L.map('mapid').setView([42.2477157, -72.4718267], 8.4);
-      var mymap = L.map('mapid').setView([42.247, -72], 8);
-      
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-	  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	  maxZoom: 18,
-	  id: 'mapbox/streets-v11',
-	  tileSize: 512,
-	  zoomOffset: -1,
-	  accessToken: 'pk.eyJ1Ijoiam9lbG1hbiIsImEiOiJja2praTZrc2MyNTR3MnVwODg2ZDg2MDBlIn0.lCStPSDt-yVoHjHSl9adUQ'
-      }).addTo(mymap);
-
-      var boston = ['Boston', 'Allston', 'Back Bay', 'Bay Village', 'Beacon Hill', 'Brighton', 'Charlestown', 'Chinatown–Leather District', 'Dorchester', 'Downtown', 'East Boston', 'Fenway-Kenmore (includes Longwood)', 'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 'North End', 'Roslindale', 'Roxbury', 'South Boston', 'South End', 'West End', 'West Roxbury', 'Wharf District']
-      
-      var length = businesses.length;
-      var radius = 50;
-      var inboston = 0;
-      var not = 0;
-      
-      for(i = 0; i < length; i++) {
-	  var row = businesses[i].split('\t');
-	  [lat, lon, name, locality] = row;
-
-	  var circle;
-	  if(boston.includes(locality)) {
-	      inboston++;
-	      circle = L.circle([lat, lon], {
-		  color: 'red',
-		  fillColor: 'red',
-		  fillOpacity: 1,
-		  radius: radius
-	      });
-	  } else {
-	      not++
-	      circle = L.circle([lat, lon], {
-		  color: 'blue',
-		  fillColor: 'blue',
-		  fillOpacity: 1,
-		  radius: radius
-	      })
-	  }
-
-	  circle.bindPopup(`${name} - ${locality}`).openPopup();
-	  
-	  circle.addTo(mymap);
-      }
-
-      document.getElementById('inboston').innerHTML = inboston;
-      document.getElementById('not').innerHTML = not;
-      
-    </script>
+    <script language="javascript" src="../javascript/map.js"></script>
 
   </body>
+ </html>
