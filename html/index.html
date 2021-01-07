@@ -10,9 +10,6 @@
 	    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 	    crossorigin=""></script>
 
-	<script src="../javascript/token.js"></script>
-    <script src="../javascript/businesses.js"></script>
-
     <style>
       body { font-family: Arial, Helvetica }
       h1 { font-size: 2em; }
@@ -23,6 +20,7 @@
   <body>
     <h1>MA Businesses with "Boston" in their names:</h1>
     <div id="mapid"></div>
+	<p>Click on a dot to see company information and distance from Boston</p>
 	<h2>Counts:</h2>
     <ul style="list-style-type: none">
       <li><span style="color: red;">&#11044;&nbsp;</span> <span id="inboston"></span></li>
@@ -30,6 +28,8 @@
 	  <li>&#11044;&nbsp; <span id="total"></span></li>
     </ul>
 
+	<script src="../javascript/token.js"></script>
+    <script src="../javascript/businesses.js"></script>
     <script src="../javascript/map.js"></script>
 
 	<a href="mailto:joelman@gmail.com">[contact]</a>
