@@ -11,6 +11,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: token
 }).addTo(mymap);
 
+const draw = async () => {
 var neighborhoods = ['Boston', 'Allston', 'Back Bay', 'Bay Village', 'Beacon Hill', 'Brighton', 'Charlestown', 'Chinatown',
 		     'Dorchester', 'Dorchester Center', 'Downtown', 'East Boston', 'Fenway-Kenmore (includes Longwood)',
 		     'Hyde Park', 'Jamaica Plain', 'Mattapan', 'Mission Hill', 'North End', 'Roslindale', 'Roxbury',
@@ -100,3 +101,6 @@ document.getElementById('inboston').innerHTML = `${inboston} In Boston`;
 document.getElementById('not').innerHTML = `${not} Not`;
 document.getElementById('satellite').innerHTML = `${satellite} Satellite`;
 document.getElementById('total').innerHTML = `${inboston + not + satellite} Total`;
+}
+
+draw();
