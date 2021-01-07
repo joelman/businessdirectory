@@ -66,3 +66,4 @@ for(i = 0; i < length; i++) {
 
 document.getElementById('inboston').innerHTML = `${inboston} In Boston`;
 document.getElementById('not').innerHTML = `${not} Not`;
+document.getElementById('total').innerHTML = `${inboston + not} Total`;
