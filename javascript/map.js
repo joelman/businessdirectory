@@ -43,6 +43,11 @@ for(i = 0; i < length; i++) {
 	continue;
     }
 
+    if(name.match(/(Boston Road|New Boston)/)) {
+	console.log('skipping ' + name);
+	continue;
+    }
+    
     points.push({
 	lat: lat,
 	lon: lon,
